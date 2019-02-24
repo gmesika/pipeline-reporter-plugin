@@ -460,8 +460,9 @@ public class PipelineReporterBuilder extends Builder implements SimpleBuildStep 
 		//Get file from resources folder
 		ClassLoader classLoader = getClass().getClassLoader();
 
-		if (classLoader.getResource(fileName).getFile() != null)
+		if (classLoader.getResource(fileName).getFile() != null && (new File(classLoader.getResource(fileName).getFile())).exists() )
 		{
+			listener.getLogger().println("getFile::File resource exists on disk: " + classLoader.getResource(fileName).getFile().toString());
 			File file = new File(classLoader.getResource(fileName).getFile());
 
 			try (Scanner scanner = new Scanner(file)) {
@@ -475,11 +476,12 @@ public class PipelineReporterBuilder extends Builder implements SimpleBuildStep 
 
 			} catch (IOException e) {
 				e.printStackTrace();
-				listener.getLogger().println("getFile::" + e.toString());
+				listener.getLogger().println("getFile::File as external:" + e.toString());
 			}
 		}
 		else
 		{
+			listener.getLogger().println("getFile::File resource as stream");
 			BufferedReader br = new BufferedReader(new InputStreamReader(classLoader.getResourceAsStream(fileName)));
 
 			String line;
@@ -489,7 +491,7 @@ public class PipelineReporterBuilder extends Builder implements SimpleBuildStep 
 					result.append(line).append("\n");
 				}
 			} catch (IOException e) {
-				listener.getLogger().println("getFile::" + e.toString());
+				listener.getLogger().println("getFile::File as stream:" + e.toString());
 				e.printStackTrace();
 			}
 
