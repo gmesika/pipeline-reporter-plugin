@@ -1,0 +1,17 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+    <f:entry title="${%PipelineName}" field="pipelineName"
+    			description="${%PipelineNameDescr}">
+        <f:textbox />
+    </f:entry>
+    <f:advanced>
+        <f:entry title="${%BuildNumber}" field="buildNumber"
+                 description="${%BuildNumberDescr}">
+            <f:textbox />
+        </f:entry>
+        <f:entry title="${%HtmlTemplateFileName}" field="HtmlTemplateFileName"
+                 description="${%HtmlTemplateFileNameDescr}">
+            <f:textbox default="jenkins-generic-matrix-email-html.template"/>
+        </f:entry>
+    </f:advanced>
+</j:jelly>

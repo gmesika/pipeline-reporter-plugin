@@ -1,0 +1,25 @@
+<div>
+    Specify the name of the pipeline project.<br>
+    <br>
+    Supporting the following scenarios:<br>
+    <br>
+    <table  style="width:100%">    
+    <tr><td>Pipeline Name Specified</td><td> Build Number Specified</td><td> Scenario</td></tr>
+    <tr><td>----------</td><td>------------------</td><td>---------</td></tr>
+    <tr><td>	 N	  </td><td>			N	 	 </td><td> executed in the same pipeline, no need to define the pipeline  and number.</td></tr>
+    <tr><td>	      </td><td>              	 </td><td> code will fetch it from actual execution object (run)</td></tr>
+    <tr><td>	      </td><td>              	 </td></tr>
+    <tr><td>	 Y	  </td><td>			N	 	 </td><td> executed with a specific build number, maybe user</td></tr>
+    <tr><td>	      </td><td>              	 </td><td> needs to to run on same build for different pipelines.</td></tr>
+    <tr><td>	      </td><td>              	 </td><td> (usually this is needed for testing report look and feel...)</td></tr>
+    <tr><td>	      </td><td>              	 </td></tr>
+    <tr><td>	 N	  </td><td>			Y	 	 </td><td> executed with a specific pipeline job name and</td></tr>
+    <tr><td>	      </td><td>          	 	 </td><td> without a build number - expected to get latest build of specific pipeline</td></tr>
+    <tr><td>	      </td><td>          	 	 </td></tr>
+    <tr><td>	 Y	  </td><td>			Y	 	 </td><td> executes with a specific pipeline job name and build number.</td></tr>
+    <tr><td>	      </td><td>          	 	 </td><td> most common when a pipeline will be executed in a different job that and</td></tr>
+    <tr><td>	      </td><td>          	 	 </td><td> pass the parameters as inputs, enabling to specify different build number then last one</td></tr>
+    </table><br>	                         
+    There are no validation in design time that pipeline project exists, to support when pipeline is created using DSL.<br>
+    When plugin is executed it validates the pipeline project exists.<br>
+</div>
